@@ -1,7 +1,6 @@
 [user]
     name = Edward Ji
     email = jiziao6@gmail.com
-    signingkey = 9B6EEFBAD2E3DA86
 
 [alias]
     c = commit
@@ -12,9 +11,6 @@
     ds = diff --staged
     l = log --oneline --graph
     s = status
-
-[commit]
-    gpgSign = true
 
 [fetch]
     prune = true
@@ -36,3 +32,6 @@
     smudge = git-lfs smudge -- %f
     process = git-lfs filter-process
     required = true
+
+[include]
+    path = user.config

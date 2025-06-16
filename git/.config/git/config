@@ -25,7 +25,7 @@
     autoSetupRemote = true
 
 [rebase]
-    autoStash = True
+    autoStash = true
 
 [filter "lfs"]
     clean = git-lfs clean -- %f

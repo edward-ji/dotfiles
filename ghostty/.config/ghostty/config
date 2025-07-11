@@ -1,0 +1,18 @@
+font-family = RobotoMono Nerd Font
+font-size = 16
+
+theme = catppuccin-mocha
+
+cursor-style-blink = false
+
+window-padding-x = 5
+window-padding-y = 3
+window-padding-balance = true
+window-height = 4320
+window-width = 7680
+
+quit-after-last-window-closed = true
+
+shell-integration-features = no-cursor
+
+macos-option-as-alt = left

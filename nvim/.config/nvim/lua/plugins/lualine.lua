@@ -1,7 +1,7 @@
 local indent = {
     function()
         local expand = vim.bo.expandtab and '󱁐' or '󰌒'
-        local width = vim.bo.expandtab and vim.bo.tabstop or vim.bo.shiftwidth
+        local width = vim.fn.shiftwidth()
         return expand .. ' ' .. width
     end,
     cond = function()

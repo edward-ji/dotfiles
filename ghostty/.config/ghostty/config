@@ -1,7 +1,7 @@
 font-family = RobotoMono Nerd Font
 font-size = 16
 
-theme = catppuccin-mocha
+theme = catppuccin-mocha.conf
 
 cursor-style-blink = false
 

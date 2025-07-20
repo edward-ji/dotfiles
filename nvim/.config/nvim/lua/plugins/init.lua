@@ -16,10 +16,4 @@ return {
         event = 'InsertEnter',
         config = true,
     },
-
-    {
-        'williamboman/mason.nvim',
-        lazy = false,
-        config = true,
-    },
 }

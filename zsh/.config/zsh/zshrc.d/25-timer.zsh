@@ -1,3 +1,6 @@
+#!/usr/bin/env zsh
+# shellcheck shell=bash disable=SC2004,SC2034
+
 ################################################################################
 # ZSH Execution Timer                                                          #
 # This script utilizes the zsh pre-execute and pre-command functions to keep   #
@@ -17,15 +20,15 @@ precmd_timer() {
     if [[ $_timer ]]
     then
         # Retrieve timer start
-        local -i elapsed=$(( $SECONDS - $_timer ))
+        local -i elapsed=$(( SECONDS - _timer ))
         unset _timer
         [[ $elapsed -le $TIMER_MINIMUM ]] && return
 
         # Convert to more readable time up to days
-        local -i seconds=$(( $elapsed % 60 ))
-        local -i minutes=$(( $elapsed / 60 % 60 ))
-        local -i hours=$(( $elapsed / 60 / 60 % 24 ))
-        local -i days=$(( $elapsed / 60 / 60 / 24 ))
+        local -i seconds=$(( elapsed % 60 ))
+        local -i minutes=$(( elapsed / 60 % 60 ))
+        local -i hours=$(( elapsed / 60 / 60 % 24 ))
+        local -i days=$(( elapsed / 60 / 60 / 24 ))
 
         # Display the execution time
         printf "󱎫 "

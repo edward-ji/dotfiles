@@ -1,3 +1,6 @@
+#!/usr/bin/env zsh
+# shellcheck shell=bash
+
 # ls aliases
 alias ls='ls --color'
 alias la='ls -a'

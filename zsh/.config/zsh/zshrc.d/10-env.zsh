@@ -1,3 +1,6 @@
+#!/usr/bin/env zsh
+# shellcheck shell=bash
+
 # jenv is a version manager for java
 [[ -s "$HOME/.jenv/bin/jenv" ]] && export PATH="$HOME/.jenv/bin:$PATH"
 if type jenv &>/dev/null; then

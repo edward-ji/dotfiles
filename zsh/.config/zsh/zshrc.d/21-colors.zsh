@@ -1,3 +1,6 @@
+#!/usr/bin/env zsh
+# shellcheck shell=bash
+
 # MacOS ls
 export LSCOLORS="exfxafaeBxdhfhBxBxexex"
 

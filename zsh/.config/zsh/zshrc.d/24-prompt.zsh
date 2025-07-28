@@ -1,3 +1,6 @@
+#!/usr/bin/env zsh
+# shellcheck shell=bash disable=SC2034,SC2016,SC2154
+
 # Prompt end of line mark
 PROMPT_EOL_MARK='%F{8}󰌑%f'
 

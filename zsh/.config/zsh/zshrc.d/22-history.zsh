@@ -1,3 +1,6 @@
+#!/usr/bin/env zsh
+# shellcheck shell=bash disable=SC2034
+
 setopt EXTENDED_HISTORY
 setopt HIST_FIND_NO_DUPS
 setopt HIST_IGNORE_ALL_DUPS

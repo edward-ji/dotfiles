@@ -1,7 +1,8 @@
 from pygments.styles import get_style_by_name
 from pygments.util import ClassNotFound
 
-c = get_config()  # type: ignore
+# get_config is automatically available in IPython config files
+c = get_config()  # type: ignore  # noqa: F821
 
 # Do not display a banner upon starting IPython
 c.TerminalIPythonApp.display_banner = False

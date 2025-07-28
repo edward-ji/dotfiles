@@ -1,3 +1,6 @@
+#!/usr/bin/env zsh
+# shellcheck shell=bash
+
 # homebrew is a package manager for macOS
 if [ "$(arch)" = "arm64" ]; then
     BREW_PATH="/opt/homebrew/bin/brew"

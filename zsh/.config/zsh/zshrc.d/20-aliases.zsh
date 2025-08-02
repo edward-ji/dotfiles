@@ -11,9 +11,9 @@ alias mkdir='mkdir -pv'
 alias grep='grep --color'
 
 # suppress stdout and stderr
-alias -g NUL='&> /dev/null'
-alias -g OUTNUL='> /dev/null'
-alias -g ERRNUL='2> /dev/null'
+alias -g nul='&> /dev/null'
+alias -g outnul='> /dev/null'
+alias -g errnul='2> /dev/null'
 
 # eza is a fork of unmaintained exa
 alias exa='eza'

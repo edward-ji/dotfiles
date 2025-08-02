@@ -1,6 +1,3 @@
-[submodule ".config/alacritty/catppuccin"]
-	path = alacritty/.config/alacritty/catppuccin
-	url = ../../catppuccin/alacritty
 [submodule "ghostty/.config/ghostty/catppuccin"]
 	path = ghostty/.config/ghostty/catppuccin
 	url = git@github.com:catppuccin/ghostty.git

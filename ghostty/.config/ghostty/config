@@ -1,5 +1,7 @@
 font-family = RobotoMono Nerd Font
 font-size = 16
+font-thicken = true
+font-thicken-strength = 128
 
 theme = catppuccin-mocha.conf
 

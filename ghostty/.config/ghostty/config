@@ -18,3 +18,5 @@ quit-after-last-window-closed = true
 shell-integration-features = no-cursor
 
 macos-option-as-alt = left
+
+keybind = super+enter=unbind

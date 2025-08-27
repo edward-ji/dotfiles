@@ -2,8 +2,6 @@
 from copy import deepcopy
 
 from IPython.utils.PyColorize import linux_theme, theme_table
-from pygments.styles import get_style_by_name
-from pygments.util import ClassNotFound
 
 c = get_config()  # noqa: F821
 
@@ -25,9 +23,13 @@ c.TerminalInteractiveShell.timeoutlen = 0.25
 # Change color scheme
 theme_name = 'catppuccin-mocha'
 
-theme = deepcopy(linux_theme)
-theme.base = theme_name
-theme_table[theme_name] = theme
-
 c.TerminalInteractiveShell.true_color = True
-c.TerminalInteractiveShell.colors = theme_name
+try:
+    from pygments.styles import get_style_by_name
+    get_style_by_name(theme_name)
+    theme = deepcopy(linux_theme)
+    theme.base = theme_name
+    theme_table[theme_name] = theme
+    c.TerminalInteractiveShell.colors = theme_name
+except Exception:
+    pass

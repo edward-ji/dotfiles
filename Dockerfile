@@ -21,6 +21,7 @@ RUN dnf install -y \
     nodejs \
     ripgrep \
     fd-find \
+    ncurses-term \
 &&  dnf clean all
 
 # Create a user with administrative privileges and zsh as default shell

@@ -20,3 +20,4 @@ shell-integration-features = no-cursor
 macos-option-as-alt = left
 
 keybind = super+enter=unbind
+keybind = shift+enter=text:\n

@@ -4,9 +4,9 @@ My user-specific application configuration.
 
 ## Try with Docker
 
-[![Docker Image Version](https://img.shields.io/docker/v/edwardji/dotfiles?style=flat-square&logo=docker)][dockerhub]
-[![amd64 Docker Image Size](https://img.shields.io/docker/image-size/edwardji/dotfiles?arch=amd64&style=flat-square&logo=amd)][dockerhub]
-[![arm64 Docker Image Size](https://img.shields.io/docker/image-size/edwardji/dotfiles?arch=arm64&style=flat-square&logo=arm)][dockerhub]
+[![Docker Image Version](https://img.shields.io/docker/v/edwardji/dotfiles?style=flat-square&logo=docker&logoColor=E5F2FC&logoSize=auto&label=&labelColor=17191E&color=1D63ED)][dockerhub]
+[![amd64 Docker Image Size](https://img.shields.io/docker/image-size/edwardji/dotfiles?arch=amd64&style=flat-square&logo=amd&logoColor=FFFFFF&logoSize=auto&label=&labelColor=080225&color=1D63ED)][dockerhub]
+[![arm64 Docker Image Size](https://img.shields.io/docker/image-size/edwardji/dotfiles?arch=arm64&style=flat-square&logo=arm&logoColor=FFFFFF&logoSize=auto&label=&labelColor=080225&color=1D63ED)][dockerhub]
 
 To quickly test the configurations in a Docker environment, you can run the
 following command. This will pull the latest Docker image, start an interactive

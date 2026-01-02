@@ -29,10 +29,10 @@ precmd_timer() {
 
         # Display the execution time
         printf "󱎫 "
-        [[ $days -gt 0 ]] && printf "%dd " $days
-        [[ $hours -gt 0 ]] && printf "%dh " $hours
-        [[ $minutes -gt 0 ]] && printf "%dm " $minutes
-        [[ $seconds -gt 0 ]] && printf "%ds" $seconds
+        [[ $days -gt 0 ]] && printf "%d d " $days
+        [[ $hours -gt 0 ]] && printf "%d h " $hours
+        [[ $minutes -gt 0 ]] && printf "%d min " $minutes
+        [[ $seconds -gt 0 ]] && printf "%d s" $seconds
         printf "\n"
     fi
 }

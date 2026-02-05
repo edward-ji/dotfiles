@@ -14,13 +14,6 @@ RUN dnf install -y \
     git \
     stow \
     zsh \
-    tmux \
-    fzf \
-    neovim \
-    zoxide \
-    nodejs \
-    ripgrep \
-    fd-find \
     ncurses-term \
 &&  dnf clean all
 
@@ -30,18 +23,21 @@ RUN useradd --groups wheel --create-home --shell /bin/zsh admin \
 USER admin
 WORKDIR /home/admin
 
-# Install uv
-RUN curl -LsSf https://astral.sh/uv/install.sh | sh
-
 # Sync dotfiles
 COPY --chown=admin . dotfiles
 RUN cd dotfiles \
 &&  stow --adopt */ \
 &&  git restore */
 
+# Install mise
+RUN curl https://mise.run | sh 
+ENV PATH="/home/admin/.local/bin:${PATH}"
+RUN mise install
+RUN mkdir ~/.zfunc && mise completions zsh > ~/.zfunc/_mise
+
 # Install neovim plugins that don't require user credentials
 RUN echo "export NO_ASKPASS=1" >> ~/.config/zsh/zshrc.d/90-user.zsh
-RUN nvim --headless "+Lazy! install" +qa
+RUN mise exec -- nvim --headless "+Lazy! install" +qa
 
 # Set locale for tmux to render nerd fonts properly
 RUN echo "export LANG=C.UTF-8" >> ~/.config/zsh/zshrc.d/90-user.zsh

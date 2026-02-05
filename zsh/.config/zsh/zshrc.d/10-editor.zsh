@@ -11,4 +11,10 @@ zstyle ':completion:*' cache-path "$XDG_CACHE_HOME"/zsh/zcompcache
 
 fpath=(~/.zfunc $fpath)
 autoload -Uz compinit
-compinit -d "$XDG_CACHE_HOME"/zsh/zcompdump-$ZSH_VERSION
+_comp_dump="$XDG_CACHE_HOME/zsh/zcompdump-$ZSH_VERSION"
+if [[ ! -f "$_comp_dump" || -n ${~_comp_dump}(#qN.mh+24) ]]; then
+  compinit -d "$_comp_dump"
+else
+  compinit -C -d "$_comp_dump"
+fi
+unset _comp_dump

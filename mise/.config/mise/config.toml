@@ -1,0 +1,13 @@
+[tools]
+fd = "latest"
+fzf = "latest"
+go = "latest"
+neovim = "latest"
+node = "24"
+ripgrep = "latest"
+rust = "latest"
+"cargo:tlrc" = "latest"
+tmux = "latest"
+usage = "latest"
+uv = "latest"
+zoxide = "latest"

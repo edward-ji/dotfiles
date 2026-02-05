@@ -1,3 +1,8 @@
+# mise is the front-end to your dev env
+if type mise &> /dev/null; then
+    eval "$(mise activate zsh)"
+fi
+
 # fzf is a general-purpose command-line fuzzy finder
 if type fzf &> /dev/null; then
     FZF_ALT_C_COMMAND= source <(fzf --zsh)

@@ -39,4 +39,4 @@
 	insteadOf = glab:
 
 [include]
-    path = user.config
+    path = local.config

@@ -1,3 +1,4 @@
 *.spl
-git/**/user.config
-zsh/**/*.user.zsh
+git/**/local.config
+zsh/**/*.local.zsh
+zsh/**/.zcompdump*

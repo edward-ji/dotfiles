@@ -6,12 +6,26 @@ SEVEN_D=$(echo "$input" | jq -r '.rate_limits.seven_day.used_percentage // empty
 SESSION_ID=$(echo "$input" | jq -r '.session_id')
 
 make_bar() {
-    local pct=$1 width=${2:-15}
+    local pct=$1 width=${2:-20}
     local filled=$(( pct * width / 100 ))
-    local empty=$(( width - filled ))
     local bar=""
-    [ "$filled" -gt 0 ] && printf -v f "%${filled}s" && bar="${f// /▓}"
-    [ "$empty"  -gt 0 ] && printf -v e "%${empty}s"  && bar="${bar}${e// /░}"
+    local c_fill=$'\e[38;2;218;119;86m'  # Claude brand color #DA7756
+    local c_empty=$'\e[0m'  # terminal default color
+    local c_reset=$'\e[0m'
+    if [ "$filled" -ge "$width" ]; then
+        # 100%: all filled, no head, no empty
+        printf -v f "%${width}s" && bar="${c_fill}${f// /━}${c_reset}"
+    elif [ "$pct" -eq 0 ]; then
+        # 0%: head first, then all empty
+        local empty=$(( width - 1 ))
+        printf -v e "%${empty}s" && bar="${c_fill}╸${c_empty}${e// /─}"
+    else
+        # General case: filled ━'s, then head ╸, then empty ─'s
+        local empty=$(( width - filled - 1 ))
+        [ "$filled" -gt 0 ] && printf -v f "%${filled}s" && bar="${c_fill}${f// /━}"
+        bar="${bar}╸${c_reset}"
+        [ "$empty"  -gt 0 ] && printf -v e "%${empty}s"  && bar="${bar}${c_empty}${e// /─}"
+    fi
     printf '%s' "$bar"
 }
 
@@ -33,6 +47,7 @@ fi
 
 BRANCH=$(cat "$GIT_CACHE_FILE")
 
+[ "$CTX_PCT" -gt 100 ] 2>/dev/null && CTX_PCT=100
 CTX_BAR=$(make_bar "$CTX_PCT")
 
 BRANCH_SEGMENT=""
@@ -42,6 +57,8 @@ USAGE_SEGMENT=""
 if [ -n "$FIVE_H" ] && [ -n "$SEVEN_D" ]; then
     FIVE_H_INT=$(printf '%.0f' "$FIVE_H")
     SEVEN_D_INT=$(printf '%.0f' "$SEVEN_D")
+    [ "$FIVE_H_INT" -gt 100 ] 2>/dev/null && FIVE_H_INT=100
+    [ "$SEVEN_D_INT" -gt 100 ] 2>/dev/null && SEVEN_D_INT=100
     FIVE_BAR=$(make_bar "$FIVE_H_INT")
     SEVEN_BAR=$(make_bar "$SEVEN_D_INT")
     USAGE_SEGMENT=" · 󰪢 $FIVE_BAR ${FIVE_H_INT}% · 󰨳 $SEVEN_BAR ${SEVEN_D_INT}%"

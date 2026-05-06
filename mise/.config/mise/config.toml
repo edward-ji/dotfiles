@@ -13,5 +13,4 @@ usage = "latest"
 uv = "latest"
 zoxide = "latest"
 "cargo:tlrc" = "latest"
-"pipx:hf" = "latest"
 "pipx:ipython" = { version = "9", uvx_args = "--with catppuccin" }

@@ -10,8 +10,7 @@ cursor-style-blink = false
 window-padding-x = 5
 window-padding-y = 3
 window-padding-balance = true
-window-height = 4320
-window-width = 7680
+window-save-state = always
 
 quit-after-last-window-closed = true
 

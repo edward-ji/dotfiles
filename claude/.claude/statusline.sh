@@ -4,6 +4,7 @@ CTX_PCT=$(echo "$input" | jq -r '.context_window.used_percentage // 0' | cut -d.
 FIVE_H=$(echo "$input"  | jq -r '.rate_limits.five_hour.used_percentage // empty')
 SEVEN_D=$(echo "$input" | jq -r '.rate_limits.seven_day.used_percentage // empty')
 SESSION_ID=$(echo "$input" | jq -r '.session_id')
+CWD=$(echo "$input" | jq -r '.cwd // .workspace.current_dir // empty')
 
 make_bar() {
     local pct=$1 width=${2:-20}
@@ -38,8 +39,8 @@ git_cache_is_stale() {
 }
 
 if git_cache_is_stale; then
-    if git rev-parse --git-dir > /dev/null 2>&1; then
-        git branch --show-current 2>/dev/null > "$GIT_CACHE_FILE"
+    if git -C "$CWD" rev-parse --git-dir > /dev/null 2>&1; then
+        git -C "$CWD" branch --show-current 2>/dev/null > "$GIT_CACHE_FILE"
     else
         echo -n > "$GIT_CACHE_FILE"
     fi

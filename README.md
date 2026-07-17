@@ -20,13 +20,25 @@ docker run --rm -it edwardji/dotfiles:latest
 
 ## Installation
 
-### Stow
+### mise
 
-To install all configurations at once, use the following command. This will
-create symlinks for all dotfiles in your home directory.
+Dotfiles are managed with [mise](https://mise.jdx.dev/dotfiles.html). Clone
+the repository with submodules, trust its configuration, and let mise symlink
+everything into place.
 
 ```
-stow */
+git clone --recurse-submodules git@github.com:edward-ji/dotfiles.git
+cd dotfiles
+mise trust
+mise dotfiles apply
+```
+
+To preview changes without writing anything, or to inspect the current state,
+use the following commands.
+
+```
+mise dotfiles apply --dry-run
+mise dotfiles status
 ```
 
 > [!WARNING]
@@ -34,12 +46,12 @@ stow */
 > The command below will overwrite your existing configurations. Make sure you
 > have backups of any important files before proceeding.
 
-If you encounter conflicts with existing configurations, you can use the
-following command to adopt the new configurations by replacing the current
-ones:
+mise refuses to replace existing files it does not manage. If you want the
+repository's versions to win over your existing configurations, apply with
+force:
 
 ```
-stow --adopt */ && git restore */
+mise dotfiles apply --force
 ```
 
 ### Docker

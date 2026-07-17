@@ -1,6 +1,4 @@
-git/**/local.config
-ipython/
-!ipython/.ipython/profile_default/ipython_config.py
+git/local.config
 nvim/**/local.lua
 nvim/**/*.spl
 zsh/**/*.local.zsh

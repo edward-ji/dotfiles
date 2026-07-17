@@ -12,7 +12,6 @@ RUN dnf install -y \
     gawk \
     gcc \
     git \
-    stow \
     zsh \
     ncurses-term \
 &&  dnf clean all
@@ -23,15 +22,16 @@ RUN useradd --groups wheel --create-home --shell /bin/zsh admin \
 USER admin
 WORKDIR /home/admin
 
+# Install mise
+RUN curl https://mise.run | sh
+ENV PATH="/home/admin/.local/bin:${PATH}"
+ENV MISE_TRUSTED_CONFIG_PATHS=/home/admin/dotfiles
+
 # Sync dotfiles
 COPY --chown=admin . dotfiles
-RUN cd dotfiles \
-&&  stow --adopt */ \
-&&  git restore */
+RUN cd dotfiles && mise dotfiles apply --force --yes
 
-# Install mise
-RUN curl https://mise.run | sh 
-ENV PATH="/home/admin/.local/bin:${PATH}"
+# Install tools from the deployed global mise config
 RUN mise install
 RUN mkdir ~/.zfunc && mise completions zsh > ~/.zfunc/_mise
 

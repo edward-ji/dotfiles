@@ -1,6 +1,6 @@
 [submodule "ghostty/.config/ghostty/catppuccin"]
-	path = ghostty/.config/ghostty/catppuccin
+	path = ghostty/catppuccin
 	url = ../../catppuccin/ghostty.git
 [submodule "tmux/.config/tmux/plugins/catppuccin/tmux"]
-	path = tmux/.config/tmux/plugins/catppuccin/tmux
+	path = tmux/plugins/catppuccin/tmux
 	url = ../../catppuccin/tmux.git

@@ -14,6 +14,3 @@ alias grep='grep --color'
 alias -g nul='&> /dev/null'
 alias -g outnul='> /dev/null'
 alias -g errnul='2> /dev/null'
-
-# eza is a fork of unmaintained exa
-alias exa='eza'

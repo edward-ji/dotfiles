@@ -1,5 +1,4 @@
 [tools]
-eza = "latest"
 fd = "latest"
 fzf = "latest"
 gh = "latest"
@@ -7,10 +6,6 @@ git-lfs = "latest"
 neovim = "0.11"
 node = "24"
 ripgrep = "latest"
-rust = "latest"
 tmux = "latest"
 usage = "latest"
-uv = "latest"
 zoxide = "latest"
-"cargo:tlrc" = "latest"
-"pipx:ipython" = { version = "9", uvx_args = "--with catppuccin" }

@@ -2,17 +2,19 @@
 
 My user-specific application configuration.
 
-## Try with Docker
+## Try with a Container
 
 [![Docker Image Version](https://img.shields.io/docker/v/edwardji/dotfiles?style=flat-square&logo=docker&logoColor=E5F2FC&logoSize=auto&label=&labelColor=17191E&color=1D63ED)][dockerhub]
 [![amd64 Docker Image Size](https://img.shields.io/docker/image-size/edwardji/dotfiles?arch=amd64&style=flat-square&logo=amd&logoColor=FFFFFF&logoSize=auto&label=&labelColor=080225&color=1D63ED)][dockerhub]
 [![arm64 Docker Image Size](https://img.shields.io/docker/image-size/edwardji/dotfiles?arch=arm64&style=flat-square&logo=arm&logoColor=FFFFFF&logoSize=auto&label=&labelColor=080225&color=1D63ED)][dockerhub]
 
-To quickly test the configurations in a Docker environment, you can run the
-following command. This will pull the latest Docker image, start an interactive
-terminal session that will be removed when you exit.
+To quickly test the configurations in a container, you can run either of the
+following commands with Podman or Docker. This will pull the latest image
+from Docker Hub, then start an interactive terminal session that will be
+removed when you exit.
 
 ```
+podman run --rm -it docker.io/edwardji/dotfiles:latest
 docker run --rm -it edwardji/dotfiles:latest
 ```
 
@@ -54,25 +56,26 @@ force:
 mise dotfiles apply --force
 ```
 
-### Docker
+### Podman
 
 > [!NOTE]
-> On Linux, Docker does not map UID/GID for host volumes. The `TARGET_UID` and
-> `TARGET_GID` variables set the container’s user and group to match your host
-> system, ensuring proper file permissions when working with mounted host
-> volumes.
+> Rootless Podman maps container users other than root to subordinate UIDs, so
+> by default the container user `admin` cannot read or write host volumes. The
+> `--userns=keep-id:uid=1000,gid=1000` option instead maps your host user to
+> `admin` (UID 1000), ensuring proper file permissions when working with
+> mounted host volumes. The `:z` volume option relabels the directory for
+> SELinux hosts such as Fedora; it is a no-op elsewhere.
 
 To seamlessly integrate the dotfiles container with your environment, use the
-following command. This matches the container’s user and group with the host’s,
-sets the terminal type for proper functionality, and binds the current directory
-as the working directory inside the container.
+following command. This maps your host user to the container user, sets the
+terminal type for proper functionality, and binds the current directory as the
+working directory inside the container.
 
 ```
-docker run -it \
-    --env TARGET_UID=$(id -u) \
-    --env TARGET_GID=$(id -g) \
+podman run -it \
+    --userns=keep-id:uid=1000,gid=1000 \
     --env TERM=$TERM \
-    --volume $(pwd):$(pwd) \
+    --volume $(pwd):$(pwd):z \
     --workdir $(pwd) \
-    edwardji/dotfiles:latest
+    docker.io/edwardji/dotfiles:latest
 ```

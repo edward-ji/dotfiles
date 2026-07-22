@@ -42,7 +42,4 @@ RUN mise exec -- nvim --headless "+Lazy! install" +qa
 # Set locale for tmux to render nerd fonts properly
 RUN echo "export LANG=C.UTF-8" >> ~/.config/zsh/zshrc.d/90-user.zsh
 
-# Set entry point and default command
-USER root
-ENTRYPOINT ["/home/admin/dotfiles/entrypoint"]
 CMD ["zsh"]

@@ -35,8 +35,7 @@ RUN cd dotfiles && mise dotfiles apply --force --yes
 RUN mise install
 RUN mkdir ~/.zfunc && mise completions zsh > ~/.zfunc/_mise
 
-# Install neovim plugins that don't require user credentials
-RUN echo "export NO_ASKPASS=1" >> ~/.config/zsh/zshrc.d/90-user.zsh
+# Install neovim plugins
 RUN mise exec -- nvim --headless "+Lazy! install" +qa
 
 # Set locale for tmux to render nerd fonts properly

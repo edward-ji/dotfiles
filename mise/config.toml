@@ -8,4 +8,6 @@ node = "24"
 ripgrep = "latest"
 tmux = "latest"
 usage = "latest"
+uv = "latest"
 zoxide = "latest"
+"pipx:ipython" = { version = "9", uvx_args = "--with catppuccin" }

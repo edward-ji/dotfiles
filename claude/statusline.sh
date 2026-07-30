@@ -35,24 +35,34 @@ GIT_CACHE_MAX_AGE=5
 
 git_cache_is_stale() {
     [ ! -f "$GIT_CACHE_FILE" ] || \
-    [ $(( $(date +%s) - $(stat -f %m "$GIT_CACHE_FILE" 2>/dev/null || stat -c %Y "$GIT_CACHE_FILE" 2>/dev/null || echo 0) )) -gt $GIT_CACHE_MAX_AGE ]
+    [ $(( $(date +%s) - $(stat -c %Y "$GIT_CACHE_FILE" 2>/dev/null || stat -f %m "$GIT_CACHE_FILE" 2>/dev/null || echo 0) )) -gt $GIT_CACHE_MAX_AGE ]
 }
 
 if git_cache_is_stale; then
     if git -C "$CWD" rev-parse --git-dir > /dev/null 2>&1; then
-        git -C "$CWD" branch --show-current 2>/dev/null > "$GIT_CACHE_FILE"
+        {
+            git -C "$CWD" branch --show-current 2>/dev/null
+            git_dir=$(git -C "$CWD" rev-parse --git-dir 2>/dev/null)
+            common_dir=$(git -C "$CWD" rev-parse --git-common-dir 2>/dev/null)
+            [ "$git_dir" != "$common_dir" ] && echo "worktree" || echo "branch"
+        } > "$GIT_CACHE_FILE"
     else
         echo -n > "$GIT_CACHE_FILE"
     fi
 fi
 
-BRANCH=$(cat "$GIT_CACHE_FILE")
+BRANCH=$(head -n1 "$GIT_CACHE_FILE")
+GIT_KIND=$(sed -n '2p' "$GIT_CACHE_FILE")
 
 [ "$CTX_PCT" -gt 100 ] 2>/dev/null && CTX_PCT=100
 CTX_BAR=$(make_bar "$CTX_PCT")
 
 BRANCH_SEGMENT=""
-[ -n "$BRANCH" ] && BRANCH_SEGMENT=" $BRANCH ·"
+if [ -n "$BRANCH" ]; then
+    BRANCH_ICON=""  # cod-git_branch
+    [ "$GIT_KIND" = "worktree" ] && BRANCH_ICON=""  # cod-worktree_small
+    BRANCH_SEGMENT="$BRANCH_ICON $BRANCH ·"
+fi
 
 USAGE_SEGMENT=""
 if [ -n "$FIVE_H" ] && [ -n "$SEVEN_D" ]; then

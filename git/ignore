@@ -48,6 +48,7 @@ tags
 # Claude Code
 .claude/*.local.md
 .claude/*.local.json
+.claude/worktrees
 
 # Codex
 .codex/

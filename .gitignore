@@ -1,5 +1,4 @@
-git/local.config
-nvim/**/local.lua
+local.*
+*.local.*
 nvim/**/*.spl
-zsh/**/*.local.zsh
 zsh/**/.zcompdump*

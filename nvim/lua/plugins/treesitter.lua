@@ -4,7 +4,7 @@ return {
     config = function()
         local function start_highlight(buf)
             if pcall(vim.treesitter.start, buf) then
-                vim.bo[buf].syntax = ''
+                vim.bo[buf].syntax = 'ON'
             end
         end
 

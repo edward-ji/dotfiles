@@ -1,6 +1,21 @@
 return {
-    'nvim-treesitter/nvim-treesitter',
-    build = ':TSUpdate',
+    specs = {
+        {
+            src = 'https://github.com/nvim-treesitter/nvim-treesitter',
+            -- The default branch is the frozen `master`, which is incompatible
+            -- with Neovim 0.12. Track `main` explicitly.
+            version = 'main',
+            data = {
+                build = function(data)
+                    if not data.active then
+                        vim.cmd.packadd('nvim-treesitter')
+                    end
+                    vim.cmd('TSUpdate')
+                end,
+            },
+        },
+    },
+
     config = function()
         local function start_highlight(buf)
             if pcall(vim.treesitter.start, buf) then

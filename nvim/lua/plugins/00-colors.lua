@@ -1,8 +1,8 @@
 return {
-    'catppuccin/nvim',
-    name = 'catppuccin',
-    lazy = false,
-    priority = 1000,
+    specs = {
+        { src = 'https://github.com/catppuccin/nvim', name = 'catppuccin' },
+    },
+
     config = function()
         require('catppuccin').setup({
             flavour = 'mocha',

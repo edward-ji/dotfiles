@@ -11,7 +11,7 @@ return {
                 cmp = true,
                 gitsigns = true,
                 nvimtree = true,
-                telescope = true,
+                snacks = true,
             },
         })
         vim.cmd.colorscheme('catppuccin')

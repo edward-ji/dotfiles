@@ -61,7 +61,7 @@ return {
                         mode = 2,
                         max_length = vim.o.columns * 2 / 3,
                         filetype_names = {
-                            TelescopePrompt = 'Telescope',
+                            snacks_picker_input = 'Snacks',
                             fugitive = 'Fugitive',
                             mason = 'Mason',
                         },

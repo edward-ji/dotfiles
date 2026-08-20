@@ -18,7 +18,6 @@ vim.keymap.set('n', '<S-Tab>', '<Cmd>bprevious<CR>')
 vim.keymap.set('n', 'gb', function()
     return '<Cmd>silent! LualineBuffersJump ' .. vim.v.count1 .. '<CR>'
 end, { desc = 'Jump to buffer [count]', expr = true })
-vim.keymap.set('n', '<Leader>bd', '<Cmd>bdelete<CR>')
 
 -- Terminal
 vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>')

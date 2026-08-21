@@ -19,7 +19,6 @@ return {
         require('lualine').setup({
             options = {
                 theme = 'auto',
-                ignore_focus = { 'NvimTree' },
                 globalstatus = true,
                 refresh = {
                     statusline = 250,
@@ -62,7 +61,6 @@ return {
                         mode = 2,
                         max_length = vim.o.columns * 2 / 3,
                         filetype_names = {
-                            NvimTree = 'NvimTree',
                             TelescopePrompt = 'Telescope',
                             fugitive = 'Fugitive',
                             mason = 'Mason',

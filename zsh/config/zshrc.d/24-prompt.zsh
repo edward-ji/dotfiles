@@ -17,7 +17,7 @@ precmd_vcs_info() {
     fi
 }
 precmd_functions+=( precmd_vcs_info )
-PROMPT+='${vcs_info_msg_0_:+" $vcs_info_msg_0_ "}'
+PROMPT+='${vcs_info_msg_0_:+" $vcs_info_msg_0_ "}'
 
 # Exit code and superuser integration
 PROMPT+='%(?.%F{green}.%F{red})%(!..)%f '

@@ -15,9 +15,6 @@ vim.keymap.set('v', '<M-j>', ":move '>+1<CR>gv=gv", { desc = 'Move selection dow
 -- Buffer management
 vim.keymap.set('n', '<Tab>', '<Cmd>bnext<CR>')
 vim.keymap.set('n', '<S-Tab>', '<Cmd>bprevious<CR>')
-vim.keymap.set('n', 'gb', function()
-    return '<Cmd>silent! LualineBuffersJump ' .. vim.v.count1 .. '<CR>'
-end, { desc = 'Jump to buffer [count]', expr = true })
 
 -- Terminal
 vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>')

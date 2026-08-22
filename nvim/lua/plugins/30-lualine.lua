@@ -58,15 +58,11 @@ return {
                 lualine_a = {
                     {
                         'buffers',
-                        mode = 2,
                         max_length = vim.o.columns * 2 / 3,
                         filetype_names = {
                             snacks_picker_input = 'Snacks',
                             fugitive = 'Fugitive',
                             mason = 'Mason',
-                        },
-                        symbols = {
-                            modified = ' +',
                         },
                     },
                 },

@@ -8,7 +8,6 @@ return {
             flavour = 'mocha',
             no_italic = true,
             integrations = {
-                cmp = true,
                 gitsigns = true,
                 nvimtree = true,
                 snacks = true,

@@ -37,7 +37,7 @@ return {
             },
             completion = {
                 documentation = { auto_show = true },
-                list = { selection = { preselect = false } },
+                list = { selection = { preselect = true, auto_insert = false } },
             },
         })
 

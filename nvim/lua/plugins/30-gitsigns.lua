@@ -17,23 +17,19 @@ return {
                 -- Navigation
                 map('n', ']c', function()
                     if vim.wo.diff then
-                        return ']c'
+                        vim.cmd.normal({ ']c', bang = true })
+                    else
+                        gs.nav_hunk('next')
                     end
-                    vim.schedule(function()
-                        gs.next_hunk()
-                    end)
-                    return '<Ignore>'
-                end, { expr = true })
+                end)
 
                 map('n', '[c', function()
                     if vim.wo.diff then
-                        return '[c'
+                        vim.cmd.normal({ '[c', bang = true })
+                    else
+                        gs.nav_hunk('prev')
                     end
-                    vim.schedule(function()
-                        gs.prev_hunk()
-                    end)
-                    return '<Ignore>'
-                end, { expr = true })
+                end)
 
                 -- Actions
                 map('n', '<Leader>hs', gs.stage_hunk)
@@ -48,18 +44,26 @@ return {
                 map('n', '<Leader>hu', gs.undo_stage_hunk)
                 map('n', '<Leader>hR', gs.reset_buffer)
                 map('n', '<Leader>hp', gs.preview_hunk)
+                map('n', '<Leader>hi', gs.preview_hunk_inline)
                 map('n', '<Leader>hb', function()
                     gs.blame_line({ full = true })
                 end)
-                map('n', '<Leader>tb', gs.toggle_current_line_blame)
                 map('n', '<Leader>hd', gs.diffthis)
                 map('n', '<Leader>hD', function()
                     gs.diffthis('~')
                 end)
+                map('n', '<Leader>hQ', function()
+                    gs.setqflist('all')
+                end)
+                map('n', '<Leader>hq', gs.setqflist)
+
+                -- Toggles
+                map('n', '<Leader>tb', gs.toggle_current_line_blame)
+                map('n', '<Leader>tw', gs.toggle_word_diff)
                 map('n', '<Leader>td', gs.toggle_deleted)
 
                 -- Text object
-                map({ 'o', 'x' }, 'ih', ':<C-U>Gitsigns select_hunk<CR>')
+                map({ 'o', 'x' }, 'ih', gs.select_hunk)
             end,
         })
     end,

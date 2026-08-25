@@ -20,3 +20,5 @@ macos-option-as-alt = left
 
 keybind = super+enter=unbind
 keybind = shift+enter=text:\n
+
+config-file = ?config.local.conf

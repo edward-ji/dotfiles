@@ -58,7 +58,7 @@ return {
                 lualine_a = {
                     {
                         'buffers',
-                        max_length = vim.o.columns * 2 / 3,
+                        max_length = vim.o.columns,
                         filetype_names = {
                             snacks_picker_input = 'Snacks',
                             fugitive = 'Fugitive',
@@ -70,12 +70,7 @@ return {
                 lualine_c = {},
                 lualine_x = {},
                 lualine_y = {},
-                lualine_z = {
-                    {
-                        'tabs',
-                        max_length = vim.o.columns / 3,
-                    },
-                },
+                lualine_z = {},
             },
             winbar = {
                 lualine_a = {},

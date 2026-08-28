@@ -35,6 +35,27 @@ return {
                 },
                 lualine_c = { 'filename' },
                 lualine_x = {
+                    {
+                        function()
+                            local status = require('sidekick.status').get()
+                            if status.kind == 'Error' then
+                                return ' '
+                            end
+                            return status.busy and ' ' or ' '
+                        end,
+                        cond = function()
+                            return require('sidekick.status').get() ~= nil
+                        end,
+                    },
+                    {
+                        function()
+                            local status = require('sidekick.status').cli()
+                            return ' ' .. (#status > 1 and #status or '')
+                        end,
+                        cond = function()
+                            return #require('sidekick.status').cli() > 0
+                        end,
+                    },
                     indent,
                     'encoding',
                     {

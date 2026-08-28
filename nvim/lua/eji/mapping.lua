@@ -12,12 +12,7 @@ vim.keymap.set('n', '<M-j>', ':move .+1<CR>==', { desc = 'Move line down', silen
 vim.keymap.set('v', '<M-k>', ":move '<-2<CR>gv=gv", { desc = 'Move selection up', silent = true })
 vim.keymap.set('v', '<M-j>', ":move '>+1<CR>gv=gv", { desc = 'Move selection down', silent = true })
 
--- Buffer management
-vim.keymap.set('n', '<Tab>', '<Cmd>bnext<CR>')
-vim.keymap.set('n', '<S-Tab>', '<Cmd>bprevious<CR>')
-
 -- Terminal
-vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-N>')
 vim.keymap.set('t', '<C-W>h', '<Cmd>wincmd h<CR>')
 vim.keymap.set('t', '<C-W>j', '<Cmd>wincmd j<CR>')
 vim.keymap.set('t', '<C-W>k', '<Cmd>wincmd k<CR>')

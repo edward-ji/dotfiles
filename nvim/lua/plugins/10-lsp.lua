@@ -10,5 +10,7 @@ return {
         -- Defaults to `automatic_enable`, which calls vim.lsp.enable() for
         -- every server installed through Mason.
         require('mason-lspconfig').setup()
+
+        vim.lsp.inline_completion.enable()
     end,
 }

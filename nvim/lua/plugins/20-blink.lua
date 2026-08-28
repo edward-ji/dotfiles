@@ -23,6 +23,7 @@ return {
                 ['<C-Space>'] = false,
                 ['<M-Space>'] = { 'show', 'show_documentation', 'hide_documentation' },
                 ['<Tab>'] = {
+                    function() return vim.lsp.inline_completion.get() end,
                     'select_next',
                     'snippet_forward',
                     function(cmp)

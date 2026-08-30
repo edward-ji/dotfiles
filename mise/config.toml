@@ -12,3 +12,6 @@ usage = "latest"
 uv = "latest"
 zoxide = "latest"
 "pipx:ipython" = { version = "9", uvx_args = "--with catppuccin" }
+
+[settings]
+auto_update = true

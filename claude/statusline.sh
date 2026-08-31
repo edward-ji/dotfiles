@@ -41,10 +41,17 @@ git_cache_is_stale() {
 if git_cache_is_stale; then
     if git -C "$CWD" rev-parse --git-dir > /dev/null 2>&1; then
         {
-            git -C "$CWD" branch --show-current 2>/dev/null
-            git_dir=$(git -C "$CWD" rev-parse --git-dir 2>/dev/null)
-            common_dir=$(git -C "$CWD" rev-parse --git-common-dir 2>/dev/null)
-            [ "$git_dir" != "$common_dir" ] && echo "worktree" || echo "branch"
+            ref=$(git -C "$CWD" branch --show-current 2>/dev/null)
+            if [ -n "$ref" ]; then
+                echo "$ref"
+                git_dir=$(git -C "$CWD" rev-parse --git-dir 2>/dev/null)
+                common_dir=$(git -C "$CWD" rev-parse --git-common-dir 2>/dev/null)
+                [ "$git_dir" != "$common_dir" ] && echo "worktree" || echo "branch"
+            else
+                git -C "$CWD" describe --tags --exact-match HEAD 2>/dev/null \
+                    || git -C "$CWD" rev-parse --short HEAD 2>/dev/null
+                echo "detached"
+            fi
         } > "$GIT_CACHE_FILE"
     else
         echo -n > "$GIT_CACHE_FILE"
@@ -61,6 +68,7 @@ BRANCH_SEGMENT=""
 if [ -n "$BRANCH" ]; then
     BRANCH_ICON=""  # cod-git_branch
     [ "$GIT_KIND" = "worktree" ] && BRANCH_ICON=""  # cod-worktree_small
+    [ "$GIT_KIND" = "detached" ] && BRANCH_ICON=""  # cod-git_commit
     BRANCH_SEGMENT="$BRANCH_ICON $BRANCH ·"
 fi
 

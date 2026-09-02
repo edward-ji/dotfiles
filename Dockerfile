@@ -36,7 +36,7 @@ RUN mise install
 RUN mkdir ~/.zfunc && mise completions zsh > ~/.zfunc/_mise
 
 # Install neovim plugins
-RUN mise exec -- nvim --headless "+Lazy! install" +qa
+RUN mise exec -- nvim --headless +qa
 
 # Set locale for tmux to render nerd fonts properly
 RUN echo "export LANG=C.UTF-8" >> ~/.config/zsh/zshrc.d/90-user.zsh

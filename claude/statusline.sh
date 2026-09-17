@@ -5,6 +5,7 @@ FIVE_H=$(echo "$input"  | jq -r '.rate_limits.five_hour.used_percentage // empty
 SEVEN_D=$(echo "$input" | jq -r '.rate_limits.seven_day.used_percentage // empty')
 SESSION_ID=$(echo "$input" | jq -r '.session_id')
 CWD=$(echo "$input" | jq -r '.cwd // .workspace.current_dir // empty')
+MODEL=$(echo "$input" | jq -r '.model.display_name // empty')
 
 make_bar() {
     local pct=$1 width=${2:-20}
@@ -64,6 +65,9 @@ GIT_KIND=$(sed -n '2p' "$GIT_CACHE_FILE")
 [ "$CTX_PCT" -gt 100 ] 2>/dev/null && CTX_PCT=100
 CTX_BAR=$(make_bar "$CTX_PCT")
 
+MODEL_SEGMENT=""
+[ -n "$MODEL" ] && MODEL_SEGMENT="$MODEL ·"
+
 BRANCH_SEGMENT=""
 if [ -n "$BRANCH" ]; then
     BRANCH_ICON=""  # cod-git_branch
@@ -83,4 +87,8 @@ if [ -n "$FIVE_H" ] && [ -n "$SEVEN_D" ]; then
     USAGE_SEGMENT=" · 󰪢 $FIVE_BAR ${FIVE_H_INT}% · 󰨳 $SEVEN_BAR ${SEVEN_D_INT}%"
 fi
 
-echo "${BRANCH_SEGMENT} ⛁ $CTX_BAR ${CTX_PCT}%${USAGE_SEGMENT}"
+PREFIX=""
+[ -n "$MODEL_SEGMENT" ] && PREFIX="${PREFIX}${MODEL_SEGMENT} "
+[ -n "$BRANCH_SEGMENT" ] && PREFIX="${PREFIX}${BRANCH_SEGMENT} "
+
+echo "${PREFIX}⛁ $CTX_BAR ${CTX_PCT}%${USAGE_SEGMENT}"

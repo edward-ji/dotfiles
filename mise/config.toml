@@ -16,3 +16,4 @@ zoxide = "latest"
 
 [settings]
 auto_update = true
+auto_update_check_duration = "1d"

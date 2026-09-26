@@ -2,5 +2,7 @@ gui:
   nerdFontsVersion: "3"
   showCommandLog: false
 
+promptToReturnFromSubprocess: false
+
 update:
   method: never

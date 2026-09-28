@@ -20,6 +20,7 @@ vim.keymap.set('t', '<C-W>l', '<Cmd>wincmd l<CR>')
 -- LSP
 vim.keymap.set('n', '<Leader>ca', function() vim.lsp.buf.code_action() end, { desc = 'Code action' })
 vim.keymap.set('n', '<Leader>cr', function() vim.lsp.buf.rename() end, { desc = 'Rename symbol' })
+vim.keymap.set('n', '<Leader>cl', function() vim.lsp.codelens.run() end, { desc = 'Run codelens' })
 
 -- Plugin and LSP managers
 vim.keymap.set('n', '<Leader>pu', function()

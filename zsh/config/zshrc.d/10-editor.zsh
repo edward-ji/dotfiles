@@ -1,5 +1,11 @@
 bindkey -v
-export KEYTIMEOUT=1
+export KEYTIMEOUT=5
+
+# On slow connections, bracketed-paste can time out before the paste-end
+# sequence arrives. Swallow it so it isn't run as vi commands.
+_swallow-paste-end() {}
+zle -N _swallow-paste-end
+bindkey -M viins '^[[201~' _swallow-paste-end
 
 bindkey -v '^?' backward-delete-char
 bindkey '^[[Z' reverse-menu-complete

@@ -14,6 +14,6 @@ uv = "latest"
 zoxide = "latest"
 "pipx:ipython" = { version = "9", uvx_args = "--with catppuccin" }
 
-[settings]
-auto_update = true
-auto_update_check_duration = "1d"
+[settings.self_update]
+auto = true
+check_duration = "1d"
